@@ -146,22 +146,6 @@ function updateRating(rating, sender) {
         return;
     }
 
-    parent.setAttribute("data-avg-rating", rating.average);
-    var avgElem = parent.getElementsByClassName("star-ratings-rating-average")[0];
-    if(avgElem) {
-        valueElem = avgElem.getElementsByClassName('star-ratings-rating-value')[0];
-        if (valueElem ) {
-            var average = rating.average.toFixed(2);
-
-            // suppress . if 0.
-            if (rating.average === 0){
-                average = 0
-            }
-
-            valueElem.innerHTML = average
-        }
-    }
-
     var countElem = parent.getElementsByClassName("star-ratings-rating-count")[0];
     if(countElem) {
         valueElem = countElem.getElementsByClassName('star-ratings-rating-value')[0];
@@ -192,8 +176,6 @@ function updateRating(rating, sender) {
             valueElem.innerHTML = rating.user_rating;
         }
     }
-
-    parent.querySelector(".star-ratings-rating-foreground").style.width = rating.percentage + '%';
 }
 
 function toggleClass (el, cls) {
