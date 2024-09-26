@@ -68,7 +68,7 @@ class RatingManager(models.Manager):
             return
         else:
             rating, created = self.get_or_create(content_type=ct, object_id=instance.pk)
-            return UserRating.objects.create(user=user, score=score, rating=rating, ip=ip).rating
+            return UserRating.objects.create(user=user, score=score, rating=rating).rating
 
 
 class AbstractBaseRating(models.Model):
