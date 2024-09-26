@@ -29,6 +29,5 @@ class CreateUserRatingForm(forms.ModelForm):
             self.obj,
             self.cleaned_data['score'],
             user=self.cleaned_data['user'],
-            ip=self.cleaned_data['ip'],
             clear=self.cleaned_data['clear'],
         )

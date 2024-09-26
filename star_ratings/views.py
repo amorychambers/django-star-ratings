@@ -33,10 +33,6 @@ class Rate(View):
             if type(return_url) == list:
                 return_url = return_url[0]
 
-            if 'HTTP_X_REAL_IP' in self.request.META:
-                data['ip'] = self.request.META['HTTP_X_REAL_IP']
-            else:
-                data['ip'] = self.request.META['REMOTE_ADDR']
 
             data['user'] = is_authenticated(request.user) and request.user.pk or None
 
