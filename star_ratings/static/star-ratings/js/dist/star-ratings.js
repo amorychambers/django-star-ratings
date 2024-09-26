@@ -24,23 +24,35 @@
      *********************/
     function bindRatings(el) {
         el.addEventListener("submit", ratingSubmit);
-    
+
         el.onmouseenter = function () {
             var maxRating = getMaxRating(this);
             var scoreEl = this.querySelector('[name=score]');
-    
             if (scoreEl){
                 var parent = utils.findParent(this, "star-ratings");
                 parent.querySelector(".star-ratings-rating-foreground").style.width = 100 / maxRating * scoreEl.value + "%";
             }
         };
-    
+
+        el.addEventListener("click", function() {
+            let ratingButton = el.children[3];
+            let dataScore = ratingButton.getAttribute("data-score");
+            let percentage = parseInt(dataScore) * 20;
+            let parent = utils.findParent(this, "star-ratings");
+            parent.querySelector(".star-ratings-rating-foreground").style.width = percentage + "%";
+            parent.setAttribute("data-rated-at", percentage)
+        })
+
+        
         el.onmouseleave = function () {
-            var avgRating = getAvgRating(this);
-            var maxRating = getMaxRating(this);
             var parent = utils.findParent(this, "star-ratings");
-            var percentage = 100 / maxRating * avgRating + "%";
-            parent.querySelector(".star-ratings-rating-foreground").style.width = percentage;
+            let initialRating = parent.getAttribute("data-initial-rating")
+            if (parent.hasAttribute("data-rated-at")) {
+                let userNewRating = parent.getAttribute("data-rated-at");
+                parent.querySelector(".star-ratings-rating-foreground").style.width = userNewRating + "%";
+            } else {
+                parent.querySelector(".star-ratings-rating-foreground").style.width = initialRating + "%";
+            };
         };
     }
     
