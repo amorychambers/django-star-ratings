@@ -43,7 +43,6 @@ class Migration(migrations.Migration):
                 ('id', models.AutoField(verbose_name='ID', auto_created=True, primary_key=True, serialize=False)),
                 ('created', model_utils.fields.AutoCreatedField(verbose_name='created', editable=False, default=django.utils.timezone.now)),
                 ('modified', model_utils.fields.AutoLastModifiedField(verbose_name='modified', editable=False, default=django.utils.timezone.now)),
-                ('ip', models.GenericIPAddressField(blank=True, null=True)),
                 ('score', models.PositiveSmallIntegerField()),
                 ('rating', models.ForeignKey(related_name='user_ratings', to=swapper.get_model_name('star_ratings', 'Rating'), on_delete=models.CASCADE)),
                 ('user', models.ForeignKey(to=settings.AUTH_USER_MODEL, on_delete=models.CASCADE)),

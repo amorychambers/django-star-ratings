@@ -8,6 +8,7 @@ from django.core.exceptions import ValidationError
 from django.db import models
 from django.contrib.contenttypes.fields import GenericForeignKey
 from django.contrib.contenttypes.models import ContentType
+from django.contrib.auth.models import User
 from django.db.models import Avg, Count, Sum
 from django.utils.translation import gettext as _
 from model_utils.models import TimeStampedModel
@@ -146,8 +147,7 @@ class UserRating(TimeStampedModel):
     """
     An individual rating of a user against a model.
     """
-    user = models.ForeignKey(settings.AUTH_USER_MODEL, blank=True, null=True, on_delete=models.CASCADE)
-    ip = models.GenericIPAddressField(blank=True, null=True)
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
     score = models.PositiveSmallIntegerField()
     rating = models.ForeignKey(get_star_ratings_rating_model_name(), related_name='user_ratings', on_delete=models.CASCADE)
 
