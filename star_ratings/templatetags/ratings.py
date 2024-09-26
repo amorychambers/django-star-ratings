@@ -5,6 +5,8 @@ import uuid
 from django import template
 from django.template import loader
 from django.templatetags.static import static
+from django.shortcuts import get_object_or_404
+from django.contrib.auth.models import User
 
 from ..models import UserRating
 from .. import app_settings, get_star_ratings_rating_model
@@ -14,16 +16,19 @@ register = template.Library()
 
 
 @register.simple_tag(takes_context=True)
-def ratings(context, item, icon_height=app_settings.STAR_RATINGS_STAR_HEIGHT, icon_width=app_settings.STAR_RATINGS_STAR_WIDTH, read_only=False, template_name=None):
+def ratings(context, item, icon_height=app_settings.STAR_RATINGS_STAR_HEIGHT, icon_width=app_settings.STAR_RATINGS_STAR_WIDTH, read_only=False, template_name=None, reviewer=None):
     request = context.get('request')
 
     if request is None:
         raise Exception('Make sure you have "django.core.context_processors.request" in your templates context processor list')
 
     rating = get_star_ratings_rating_model().objects.for_instance(item)
-    user = is_authenticated(request.user) and request.user or None
+    if reviewer:
+        user = get_object_or_404(User, username=reviewer)
+    else:
+        user = is_authenticated(request.user) and request.user or None
 
-    if is_authenticated(request.user) or app_settings.STAR_RATINGS_ANONYMOUS:
+    if user:
         user_rating = UserRating.objects.for_instance_by_user(item, user=user)
     else:
         user_rating = None
