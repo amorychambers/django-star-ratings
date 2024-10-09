@@ -31,10 +31,6 @@ msgstr "Avaliação média"
 msgid "User is mandatory!"
 msgstr "Usuário é obrigatório!"
 
-#: models.py:40
-msgid "IP address is mandatory!"
-msgstr "Endereço IP é obrigatório!"
-
 #: models.py:44
 msgid "Already rated."
 msgstr "Já avaliado"

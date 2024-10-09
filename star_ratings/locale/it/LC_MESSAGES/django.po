@@ -31,10 +31,6 @@ msgstr "Votazione media"
 msgid "User is mandatory!"
 msgstr "Utente obbligatorio!"
 
-#: models.py:40
-msgid "IP address is mandatory!"
-msgstr "Indirizzo IP obbligatorio!"
-
 #: models.py:44
 msgid "Already rated."
 msgstr "Già votato."

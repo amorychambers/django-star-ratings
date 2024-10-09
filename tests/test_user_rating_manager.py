@@ -33,8 +33,8 @@ class ForInstanceByUser(BaseFooTest, TestCase):
     def test_anon_ratings_is_true___none_is_returned(self):
         foo = mommy.make(self.foo_model)
 
-        get_star_ratings_rating_model().objects.rate(foo, 1, ip='127.0.0.1')
-        get_star_ratings_rating_model().objects.rate(foo, 1, ip='127.0.0.1')
+        get_star_ratings_rating_model().objects.rate(foo, 1)
+        get_star_ratings_rating_model().objects.rate(foo, 1)
 
         self.assertIsNone(
             UserRating.objects.for_instance_by_user(foo),
@@ -60,8 +60,8 @@ class BulkCreate(BaseFooTest, TestCase):
         user_a, user_b = mommy.make(get_user_model(), _quantity=2)
 
         data = [
-            UserRating(user=user_a, ip='127.0.0.1', score=3, rating=rating),
-            UserRating(user=user_b, ip='127.0.0.2', score=3, rating=rating),
+            UserRating(user=user_a, score=3, rating=rating),
+            UserRating(user=user_b, score=3, rating=rating),
         ]
 
         UserRating.objects.bulk_create(data)
@@ -76,11 +76,11 @@ class BulkCreate(BaseFooTest, TestCase):
         user_a, user_b, user_c = mommy.make(get_user_model(), _quantity=3)
 
         data = [
-            UserRating(user=user_a, ip='127.0.0.1', score=1, rating=foo_rating),
-            UserRating(user=user_b, ip='127.0.0.2', score=3, rating=foo_rating),
-            UserRating(user=user_a, ip='127.0.0.1', score=1, rating=bar_rating),
-            UserRating(user=user_b, ip='127.0.0.2', score=3, rating=bar_rating),
-            UserRating(user=user_c, ip='127.0.0.2', score=5, rating=bar_rating),
+            UserRating(user=user_a, score=1, rating=foo_rating),
+            UserRating(user=user_b, score=3, rating=foo_rating),
+            UserRating(user=user_a, score=1, rating=bar_rating),
+            UserRating(user=user_b, score=3, rating=bar_rating),
+            UserRating(user=user_c, score=5, rating=bar_rating),
         ]
 
         UserRating.objects.bulk_create(data)

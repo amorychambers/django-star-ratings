@@ -31,10 +31,6 @@ msgstr "Средний рейтинг"
 msgid "User is mandatory!"
 msgstr "Пользователь обязателен!"
 
-#: models.py:40
-msgid "IP address is mandatory!"
-msgstr "IP-адрес обязателен!"
-
 #: models.py:44
 msgid "Already rated."
 msgstr "Уже оценено."

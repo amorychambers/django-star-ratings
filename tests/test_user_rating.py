@@ -24,16 +24,6 @@ class UserRatingStr(BaseFooTest, TestCase):
 
         self.assertEqual('{} rating {} for {}'.format(user, user_rating.score, foo), str(user_rating))
 
-    @override_settings(STAR_RATINGS_ANONYMOUS=True)
-    def test_anon_is_true___result_contains_ip_and_rating_name(self):
-        user = mommy.make(get_user_model())
-        foo = mommy.make(self.foo_model)
-
-        rating = get_star_ratings_rating_model().objects.rate(foo, 1, user, '127.0.0.1')
-        user_rating = rating.user_ratings.get(ip='127.0.0.1')
-
-        self.assertEqual('{} rating {} for {}'.format('127.0.0.1', user_rating.score, foo), str(user_rating))
-
     @override_settings(STAR_RATINGS_ANONYMOUS=False)
     @given(text(min_size=1))
     def test_object_name_contains_any_unicode___str_does_not_error(self, name):

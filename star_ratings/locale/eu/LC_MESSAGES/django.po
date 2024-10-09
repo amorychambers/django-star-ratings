@@ -30,10 +30,6 @@ msgstr "Puntuazio media"
 msgid "User is mandatory!"
 msgstr "Erabiltzailea beharrezkoa da!"
 
-#: models.py:40
-msgid "IP address is mandatory!"
-msgstr "IP helbidea beharrezkoa da!"
-
 #: models.py:44
 msgid "Already rated."
 msgstr "Dagoeneko puntuatuta."

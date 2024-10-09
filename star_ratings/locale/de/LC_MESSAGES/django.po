@@ -30,10 +30,6 @@ msgstr "Durchschnitt"
 msgid "User is mandatory!"
 msgstr "Ein Benutzer ist obligatorisch!"
 
-#: models.py:40
-msgid "IP address is mandatory!"
-msgstr "Eine IP-Adresse ist Pflicht!"
-
 #: models.py:44
 msgid "Already rated."
 msgstr "Bereits bewertet."

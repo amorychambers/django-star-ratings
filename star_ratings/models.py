@@ -42,7 +42,7 @@ class RatingManager(models.Manager):
         rating._user_rating_deleted = True
         return rating
 
-    def rate(self, instance, score, user=None, ip=None, clear=False):
+    def rate(self, instance, score, user=None, clear=False):
         if isinstance(instance, self.model):
             raise TypeError("Rating manager 'rate' expects model to be rated, not Rating model.")
         ct = ContentType.objects.get_for_model(instance)
@@ -159,4 +159,4 @@ class UserRating(TimeStampedModel):
     def __str__(self):
         if not app_settings.STAR_RATINGS_ANONYMOUS:
             return '{} rating {} for {}'.format(self.user, self.score, self.rating.content_object)
-        return '{} rating {} for {}'.format(self.ip, self.score, self.rating.content_object)
+        return '{} rating {} for {}'.format(self.score, self.rating.content_object)
